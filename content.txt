@@ -1,1 +1,1 @@
-20133254ฃฌิ๘ึ้
+Hello!This is Test of sending mail with Python which use SMTP and POP
