@@ -10,7 +10,7 @@ import string
 from email import parser
 from  pyDes import *
 
-# 确定运行环境的encoding
+# Be sure coding 
 __g_codeset = sys.getdefaultencoding()
 if "ascii"==__g_codeset:
     __g_codeset = locale.getdefaultlocale()[1]
@@ -32,9 +32,9 @@ def mbs_to_utf8(s):
     return s.decode(__g_codeset).encode("utf-8")
 #
 
-host = 'pop.sina.com'
-username = 'web_vb200@sina.com'
-password = '13294618423fx'
+host = 'pop.xxx.com'
+username = 'recv_mail@xxx.com'
+password = 'recv_passwd_POP3'
 
 pop_conn = poplib.POP3_SSL(host)
 pop_conn.user(username)
@@ -51,7 +51,6 @@ messages = ["\n".join(mssg[1]) for mssg in messages]
 #print messages
 
 #Parse message intom an email object:
-# 分析
 messages = [parser.Parser().parsestr(mssg) for mssg in messages]
 i = 0
 for index in range(0,len(messages)):
@@ -75,7 +74,7 @@ for index in range(0,len(messages)):
         fileName = part.get_filename()
         contentType = part.get_content_type()
         mycode=part.get_content_charset();
-        # 保存附件
+        # if had attachment
         if fileName:
             data = part.get_payload(decode=True)
             h = email.Header.Header(fileName)
@@ -89,7 +88,7 @@ for index in range(0,len(messages)):
             fEx.write(data)
             fEx.close()
         elif contentType == 'text/plain':# or contentType == 'text/html':
-            #保存正文
+            #Get Coontent
             data = part.get_payload(decode=True)
             content=str(data);
             if mycode=='gb2312':
@@ -113,7 +112,7 @@ for index in range(0,len(messages)):
             print  "[+] Subject: ", subject            
                        
             
-            #取出正文内容data，转换进制，得到密文d,解密函数k.decrypt()得到明文
+            #The Coontent is data，change its hex and we have cryptograph 'd',then use k.decrypt() to get express
             print '[+]content:  ' + data
             
             d = binascii.unhexlify(data)
