@@ -16,7 +16,7 @@ def sendMail(user,pwd,to,subject,text):
     msg['Subject'] = subject
 
     try:
-        smtpServer = smtplib.SMTP('smtp.xxxx.com',25) #port is changed because of your smtp server
+        smtpServer = smtplib.SMTP('smtp.xxxx.com',25) #port is changed with your smtp server
         print "[+] Connecting To Mail Server "
         smtpServer.ehlo()
         print "[+] Starting Encrypted Session "
@@ -71,13 +71,13 @@ line = target.readline()
 while line:
     list = line.split(',')
     for recvmail in list:
-        sendMail(user,pwd, recvmail, '20133224', 'wedfrfrfjgksksdsdsas')
+        sendMail(user,pwd, recvmail, 'subject', 'content')
 
 target.close()
 '''
 '''
 with open('target.txt') as target:
     recv = target.readline().replace(',',' ')
-    sendMail(user, pwd, recv, '20133224', 'wedfrfrfjgksksdsdsas')
+    sendMail(user, pwd, recv, 'subject', content')
     print recv
 '''
