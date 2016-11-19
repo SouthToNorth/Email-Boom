@@ -15,7 +15,7 @@ def sendMail(user,pwd,to,subject,text):
     msg['Subject'] = subject
 
     try:
-        smtpServer = smtplib.SMTP('smtp.163.com',25)
+        smtpServer = smtplib.SMTP('smtp.xxx.com',25)
         print "[+] Connecting To Mail Server "
         smtpServer.ehlo()
         print "[+] Starting Encrypted Session "
@@ -32,8 +32,8 @@ def sendMail(user,pwd,to,subject,text):
         print str(e)
         print "[-] Sending Mail Failed "
 
-user = 'shizimeiyoula@163.com'
-pwd = 'daozhu250'
+user = 'you_smtp_email@xxx.com'
+pwd = 'smtp_passwd'
  
 
 #----------------------------------------------------------------------
@@ -57,7 +57,7 @@ target = open('target.txt')
 line = target.readline()
 list = line.split(',')
 for recvmail in list:
-    sendMail(user,pwd, recvmail, '20133224', encrypt('content.txt'))
+    sendMail(user,pwd, recvmail, 'subject', encrypt('content.txt'))
 
 target.close() 
  """
@@ -68,7 +68,7 @@ line = target.readline()
 while line:
     list = line.split(',')
     for recvmail in list:
-        sendMail(user,pwd, recvmail, '20133224', encrypt('content.txt'))
+        sendMail(user,pwd, recvmail, 'subject', encrypt('content.txt'))
         time.sleep(5)
 
 target.close()
@@ -76,6 +76,6 @@ target.close()
 '''
 with open('target.txt') as target:
     recv = target.readline().replace(',',' ')
-    sendMail(user, pwd, recv, '20133224', 'wedfrfrfjgksksdsdsas')
+    sendMail(user, pwd, recv, 'subject', 'wedfrfrfjgksksdsdsas')
     print recv
 '''
