@@ -16,7 +16,7 @@ def sendMail(user,pwd,to,subject,text):
     msg['Subject'] = subject
 
     try:
-        smtpServer = smtplib.SMTP('smtp.163.com',25)
+        smtpServer = smtplib.SMTP('smtp.xxxx.com',25) #port is changed because of your smtp server
         print "[+] Connecting To Mail Server "
         smtpServer.ehlo()
         print "[+] Starting Encrypted Session "
@@ -38,6 +38,7 @@ pwd = 'you smtp passwd'
  
 
 #----------------------------------------------------------------------
+#using DES_CBC to encrypt Content
 def encrypt( filename):
     """
     Get Content
@@ -45,8 +46,8 @@ def encrypt( filename):
     with open(filename) as content:
         data = content.readline()
     
-    key = 'test_key'
-    IV = 'test__IV'
+    key = 'test_key'  #8 or multiple of 8 bits
+    IV = 'test__IV'   #8 bits
     
     k = des(key,CBC, IV, pad=None, padmode=PAD_PKCS5)
     d = k.encrypt(data)
