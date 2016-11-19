@@ -33,14 +33,14 @@ def sendMail(user,pwd,to,subject,text):
         print str(e)
         print "[-] Sending Mail Failed "
 
-user = 'shizimeiyoula@163.com'
-pwd = 'daozhu250'
+user = 'youmail@xxx.com'
+pwd = 'you smtp passwd'
  
 
 #----------------------------------------------------------------------
 def encrypt( filename):
     """
-    取出正文内容
+    Get Content
     """
     with open(filename) as content:
         data = content.readline()
