@@ -12,7 +12,7 @@ import binascii
 from email import parser
 from  pyDes import *
 
-# 确定运行环境的encoding
+# make sure encoding
 __g_codeset = sys.getdefaultencoding()
 if "ascii"==__g_codeset:
     __g_codeset = locale.getdefaultlocale()[1]
@@ -34,9 +34,9 @@ def mbs_to_utf8(s):
     return s.decode(__g_codeset).encode("utf-8")
 #
 
-host = 'pop.sina.com'
-username = 'web_vb200@sina.com'
-password = '13294618423fx'
+host = 'pop.XX.com'
+username = 'XXX@XX.com'
+password = 'XXXXXXX'
 
 pop_conn = poplib.POP3_SSL(host)
 pop_conn.user(username)
@@ -77,7 +77,7 @@ for index in range(0,len(messages)):
         fileName = part.get_filename()
         contentType = part.get_content_type()
         mycode=part.get_content_charset();
-        # 保存附件
+        # save attachment
         if fileName:
             data = part.get_payload(decode=True)
             h = email.Header.Header(fileName)
@@ -91,7 +91,7 @@ for index in range(0,len(messages)):
             fEx.write(data)
             fEx.close()
         elif contentType == 'text/plain':# or contentType == 'text/html':
-            #保存正文
+            #save content
             data = part.get_payload(decode=True)
             content=str(data);
             if mycode=='gb2312':
