@@ -11,12 +11,12 @@ from  email.mime.text import MIMEText
 from  email.mime.base import MIMEBase
 from  email.mime.multipart import MIMEMultipart
 
-user = 'shizimeiyoula@163.com'
-password = 'daozhu250'
+user = 'XXX@XX.com'
+password = 'XXX'
 subject = 'Just a test'
 
 data = 'python of sending mail'
-to = 'web_vb200@sina.com'
+to = 'XXX@XX.com'
 
 #----------------------------------------------------------------------
 def rsa_encrypt(data):
@@ -25,14 +25,14 @@ def rsa_encrypt(data):
     #return crypto
 
     """
-    利用RSA对文件正文进行加密
+    use RSA encrypted content
     >>> (pub_key,priv_key) = rsa.newkeys(256)
     >>> crypto = rsa.encrypt(b'www',pub_key)
     >>> rsa.decrypt(crypto, priv_key)
     >>> 'www'
     """
      
-    #生成一对密钥，保存为.pem文件,可以为下次使用准备，也可以直接实用生成的密钥，如开头注释所写
+    #make a couple key,kepp as .pem, repare for next,also could use sraight produce keys
     #(pub_key, priv_key) = rsa.newkeys(256)
     (pub_key,priv_key) = rsa.newkeys(1024)
     
@@ -64,7 +64,7 @@ def rsa_encrypt(data):
 #----------------------------------------------------------------------
 def msg_cont(filename):
     """
-    定义邮件内容，包括正文与附件
+    content attachment
     msg.attach(payload)
     """
     msg = MIMEMultipart()
@@ -82,18 +82,18 @@ def msg_cont(filename):
     return msg
 '''  
     with open('test.txt','rb') as f:
-        #设置附件MIME和文件名，注意附件的类型
+        #attachment of MIME name of attachment,and notice type of file
         att = MIMEBase('txt','txt',filename = 'test.txt')
-        #设置必要的头信息
+        #head information
         att.add_header('Content-Disposition','attachment',filename = 'test.txt')
         att.add_header('Content-ID','<0>')
         att.add_header('X-Attachment-ID','<0>')
         
-        #将附件的内容加到邮件内容中去
+        #make attachment into email
         att.set_payload(f.read())
-        #使用Base64编码
+        #base 64
         encoders.encode_base64(att)
-        #添加到MIMEMultipart
+        #add into MIMEMultipart
         msg.attach(att)  
 '''
 
@@ -101,8 +101,8 @@ def msg_cont(filename):
 #----------------------------------------------------------------------
 def sendmail(user,password,to,subject,msg):
     """
-    发送函数，参数分别为：user,登陆名，password：登录密码，to:收件人,subject：邮件主题，
-    msg：邮件内容，包括邮件的附件和正文
+    user，password，to:,subject，
+    msg：attachment coontent
     """
 
     try:
